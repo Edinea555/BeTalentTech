@@ -1,0 +1,228 @@
+Documentção API
+
+2.2.1 Autenticação:
+
+
+Os endpoints permitem que você gerencie informações sobre o usuário
+autenticado.
+
+Foi realizado dois testes
+
+Cenario 2.2.1.2  : CreateTokenFall Endpoint:
+<https://restful-booker.herokuapp.com/auth>
+
+Steps: Inserir endpoint no campo URL Selecionar metodo Post Inserir em
+Header
+
+Content-Type: application/json
+
+Inserir em Body
+
+{
+
+\"username\": \"admin\",
+
+\"password\": \"password769\"
+
+}
+
+Clicar no botão Send
+
+Resultado esperado: O resultado da pesquisa deverá retorna mensagem de
+erro para credenciais incorretas
+
+Cenario 2.2.1.1 : CreateTokenSucess Endpoint:
+<https://restful-booker.herokuapp.com/auth>
+
+Steps: Inserir endpoint no campo URL Selecionar metodo Post Inserir em
+Header
+
+Content-Type: application/json
+
+Inserir em Body
+
+{
+
+\"username\": \"admin\",
+
+\"password\": \"password123\"
+
+}
+
+Clicar no botão Send
+
+Resultado esperado: O resultado da pesquisa deverá retorna um token e o
+codigo 200 ok
+
+  
+
+2.2.3 Filtros e Buscas
+  
+  
+
+Cenario 3 - Filtrar usuario pelo nome Endpoint pesquisado
+<https://restful-booker.herokuapp.com/booking> Steps: Inserir Url
+selecionar metodo http \"GET\" Em PARAMETROS inserir \"Firstname\" em
+Key e o nome selecionado
+
+Resultado esperado: Retornar o Id do Usuario selecionado em value
+
+Cenario 4- Filtrar por Checkin Endpoint pesquisado:
+<https://restful-booker.herokuapp.com/booking> Steps: Inserir Url
+selecionar metodo http \"GET\" Em PARAMETROS inserir \"checkin\" em Key
+e a data selecionada em value Resultado esperado: Retornar o Id do que
+tenha essa data no checkin
+
+Cenario 5- Filtrar por Checkout Endpoint pesquisado:
+[https://restful-booker.herokuapp.com/booking](https://restful-booker.herokuapp.com/booking))
+Steps: Inserir Url selecionar metodo http \"GET\" Em PARAMETROS inserir
+\"checkout\" em Key e a data selecionada em value Resultado esperado:
+Retornar o Id do que tenha essa data no checkout
+
+
+
+  2.2.2  Gestão de Reservas
+ 
+ 
+Cenario 2.2.2.1 : Pesquisar reservas - Getbookingids Endpoint:
+[https://restful-booker.herokuapp.com/booking/](https://restful-booker.herokuapp.com/auth)
+
+Steps: Inserir endpoint no campo URL Selecionar metodo Get Inserir em
+Autorization o token recebido no request CreateTokenSucess
+
+Selecione a opção Bearer Token em Auth type e insira o token no campo
+token
+
+Clicar no botão Send
+
+Resultado esperado: Deverá retornar uma lista de objetos contendo ids e
+o codigo de 200 ok
+
+
+
+Cenario 2.2.2.2 :Pesquisar reserva especifica - GetBooking
+
+Endpoint:
+[https://restful-booker.herokuapp.com/booking/id](https://restful-booker.herokuapp.com/auth)
+
+Steps: Inserir endpoint no campo URL Selecionar metodo Get Inserir
+Header - Accept: application/json
+
+Selecione a opção Bearer Token em Auth type e insira o token no campo
+
+Adicionar a URL algum id que retornou na request anterior, Getbookingids
+
+Clicar no botão Send
+
+Resultado esperado: Deverá retornar json com dados referente a reserva
+especifica: firstname, lastname,
+totalprice,depositpaid,bookgdates(checkin/checkout), additionalneeds e
+codigo de retorno 200 ok
+
+Cenario 2.2.2.3 : Criação de Reservas - CreateBooking
+
+Endpoint:
+[https://restful-booker.herokuapp.com/booking](https://restful-booker.herokuapp.com/auth)
+
+Steps: Inserir endpoint no campo URL Selecionar metodo Post Inserir
+Header - Accept: application/json
+
+\- Content-Type: application/json
+
+Inserir em body o json:
+
+StartFragment
+
+JSON
+
+\'{
+
+\"firstname\" : \"Jim\",
+
+\"lastname\" : \"Brown\",
+
+\"totalprice\" : 111,
+
+\"depositpaid\" : true,
+
+\"bookingdates\" : {
+
+\"checkin\" : \"2018-01-01\",
+
+\"checkout\" : \"2019-01-01\"
+
+},
+
+\"additionalneeds\" : \"Breakfast\"
+
+}\'
+
+EndFragment
+
+Resultado esperado: Deverá retornar json com dados referente a reserva
+especifica: firstname, lastname,
+totalprice,depositpaid,bookgdates(checkin/checkout), additionalneeds e
+codigo de retorno 200 ok
+
+Cenario 2.2.2.4 : Atualizar Reservas- Updatebooking Endpoint:
+[https://restful-booker.herokuapp.com/booking/id](https://restful-booker.herokuapp.com/auth)
+
+Steps: Inserir endpoint no campo URL Selecionar metodo PUT Em Header:
+
+Inserir Content-Type:application/json
+
+Accept:application/json
+
+Cookie: token= token gerado na requesição CreateTokenSucess
+
+Authorization: Basic YWRtaW46cGFzc3dvcmQxMjM=
+
+Inserir o id da reserva que deseja atualizar na url
+
+Em Body
+
+Inserir dados a serem ataulizados
+
+StartFragment
+
+JSON
+
+\"firstname\" : \"James\",
+
+\"lastname\" : \"Brown\",
+
+\"totalprice\" : 111,
+
+\"depositpaid\" : true,
+
+\"bookingdates\" : {
+
+\"checkin\" : \"2018-01-01\",
+
+\"checkout\" : \"2019-01-01\"
+
+},
+
+\"additionalneeds\" : \"Breakfast\"
+
+EndFragment
+
+Clicar no botão Send
+
+Resultado esperado: Deverá retornar o json da reserva com os dados
+atualizados
+
+Cenario 2.2.2.2.5: Deletar reserva- Deletebooking Endpoint:
+[https://restful-booker.herokuapp.com/booking/id](https://restful-booker.herokuapp.com/auth)
+
+Steps: Inserir endpoint no campo URL Selecionar metodo Delete Em Header:
+
+Inserir Cookie: token= token gerado na requesição CreateTokenSucess
+
+Authorization: Basic YWRtaW46cGFzc3dvcmQxMjM=
+
+Inserir na URL o id que deseja deletar
+
+Resultado esperado:
+
+Retornar 200OK e o texto Created
