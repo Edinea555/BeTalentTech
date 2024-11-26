@@ -1,0 +1,108 @@
+{
+	"info": {
+		"_postman_id": "7ae719cd-4e7a-4ebf-99a7-10f71b2894ef",
+		"name": "Filtros e buscas",
+		"description": "Cenario 1 - Filtrar usuario pelo nome  \nEndpoint pesquisado: \\[\\[[https://restful-booker.herokuapp.com/booking]](https://restful-booker.herokuapp.com/booking])](https://restful-booker.herokuapp.com/booking%5D%5D(https://restful-booker.herokuapp.com/booking%5D))  \nSteps:  \nInserir Url selecionar metodo http \"GET\"  \nEm PARAMETROS inserir \"Firstname\" em Key e o nome selecionado\n\nResultado esperado: Retornar o Id do Usuario selecionado em value\n\nCenario 2- Filtrar por Checkin  \nEndpoint pesquisado: \\[\\[[https://restful-booker.herokuapp.com/booking]](https://restful-booker.herokuapp.com/booking])](https://restful-booker.herokuapp.com/booking%5D%5D(https://restful-booker.herokuapp.com/booking%5D))  \nSteps:  \nInserir Url selecionar metodo http \"GET\"  \nEm PARAMETROS inserir \"checkin\" em Key e a data selecionada em value  \nResultado esperado: Retornar o Id do que tenha essa data no checkin\n\nCenario 3- Filtrar por Checkout  \nEndpoint pesquisado: \\[\\[[https://restful-booker.herokuapp.com/booking]](https://restful-booker.herokuapp.com/booking])](https://restful-booker.herokuapp.com/booking%5D%5D(https://restful-booker.herokuapp.com/booking%5D))  \nSteps:  \nInserir Url selecionar metodo http \"GET\"  \nEm PARAMETROS inserir \"checkout\" em Key e a data selecionada em value  \nResultado esperado: Retornar o Id do que tenha essa data no checkout",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "39991772"
+	},
+	"item": [
+		{
+			"name": "SearchForName",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://restful-booker.herokuapp.com/booking/?firstname=Edinéa&lastname=Black",
+					"protocol": "https",
+					"host": [
+						"restful-booker",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"booking",
+						""
+					],
+					"query": [
+						{
+							"key": "firstname",
+							"value": "Edinéa"
+						},
+						{
+							"key": "lastname",
+							"value": "Black"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "SearchForCheckInDate",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://restful-booker.herokuapp.com/booking/?checkin=2022-01-01",
+					"protocol": "https",
+					"host": [
+						"restful-booker",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"booking",
+						""
+					],
+					"query": [
+						{
+							"key": "checkin",
+							"value": "2022-01-01"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "SearchForCheckOutDate",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://restful-booker.herokuapp.com/booking/?checkout=2044-01-01",
+					"protocol": "https",
+					"host": [
+						"restful-booker",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"booking",
+						""
+					],
+					"query": [
+						{
+							"key": "checkout",
+							"value": "2044-01-01"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

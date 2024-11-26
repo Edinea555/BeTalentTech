@@ -1,0 +1,238 @@
+{
+	"info": {
+		"_postman_id": "1ca4b540-7c9e-465d-b8d6-1ddce3c24154",
+		"name": "Gestão de reservas",
+		"description": "Cenario 1 : Pesquisar reservas - Getbookingids  \nEndpoint: [https://restful-booker.herokuapp.com/booking/](https://restful-booker.herokuapp.com/auth)\n\nSteps:  \nInserir endpoint no campo URL  \nSelecionar metodo Get  \nInserir em Autorization o token recebido no request CreateTokenSucess\n\nSelecione a opção Bearer Token em Auth type e insira o token no campo token\n\nClicar no botão Send\n\nResultado esperado: Deverá retornar uma lista de objetos contendo ids e o codigo de 200 ok\n\nCenario 2 :Pesquisar reserva especifica - GetBooking\n\nEndpoint: [https://restful-booker.herokuapp.com/booking/id](https://restful-booker.herokuapp.com/auth)\n\nSteps:  \nInserir endpoint no campo URL  \nSelecionar metodo Get  \nInserir Header - Accept: application/json\n\nSelecione a opção Bearer Token em Auth type e insira o token no campo\n\nAdicionar a URL algum id que retornou na request anterior, Getbookingids\n\nClicar no botão Send\n\nResultado esperado: Deverá retornar json com dados referente a reserva especifica: firstname, lastname, totalprice,depositpaid,bookgdates(checkin/checkout), additionalneeds e codigo de retorno 200 ok\n\nCenario 3 : Criação de Reservas - CreateBooking\n\nEndpoint: [https://restful-booker.herokuapp.com/booking](https://restful-booker.herokuapp.com/auth)\n\nSteps:  \nInserir endpoint no campo URL  \nSelecionar metodo Post  \nInserir Header - Accept: application/json\n\n\\- Content-Type: application/json\n\nInserir em body o json:\n\nStartFragment\n\n``` json\n'{\n    \"firstname\" : \"Jim\",\n    \"lastname\" : \"Brown\",\n    \"totalprice\" : 111,\n    \"depositpaid\" : true,\n    \"bookingdates\" : {\n        \"checkin\" : \"2018-01-01\",\n        \"checkout\" : \"2019-01-01\"\n    },\n    \"additionalneeds\" : \"Breakfast\"\n}'\n\n ```\n\nEndFragment\n\nResultado esperado: Deverá retornar json com dados referente a reserva especifica: firstname, lastname, totalprice,depositpaid,bookgdates(checkin/checkout), additionalneeds e codigo de retorno 200 ok\n\nCenario 4 : Atualizar Reservas- Updatebooking  \nEndpoint: [https://restful-booker.herokuapp.com/booking/id](https://restful-booker.herokuapp.com/auth)\n\nSteps:  \nInserir endpoint no campo URL  \nSelecionar metodo PUT  \nEm Header:\n\nInserir Content-Type:application/json\n\nAccept:application/json\n\nCookie: token= token gerado na requesição CreateTokenSucess\n\nAuthorization: Basic YWRtaW46cGFzc3dvcmQxMjM=\n\nInserir o id da reserva que deseja atualizar na url\n\nEm Body\n\nInserir dados a serem ataulizados\n\nStartFragment\n\n``` json\n \"firstname\" : \"James\",\n    \"lastname\" : \"Brown\",\n    \"totalprice\" : 111,\n    \"depositpaid\" : true,\n    \"bookingdates\" : {\n        \"checkin\" : \"2018-01-01\",\n        \"checkout\" : \"2019-01-01\"\n    },\n    \"additionalneeds\" : \"Breakfast\"\n\n ```\n\nEndFragment\n\nClicar no botão Send\n\nResultado esperado: Deverá retornar o json da reserva com os dados atualizados\n\nCenario 5 : Deletar reserva- Deletebooking  \nEndpoint: [https://restful-booker.herokuapp.com/booking/id](https://restful-booker.herokuapp.com/auth)\n\nSteps:  \nInserir endpoint no campo URL  \nSelecionar metodo Delete  \nEm Header:\n\nInserir Cookie: token= token gerado na requesição CreateTokenSucess\n\nAuthorization: Basic YWRtaW46cGFzc3dvcmQxMjM=\n\nInserir na URL o id que deseja deletar\n\nResultado esperado:\n\nRetornar 200OK e o texto Created",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "39991772"
+	},
+	"item": [
+		{
+			"name": "GetBookingkIds",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "\"3ca3c941b9e70b7\"",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://restful-booker.herokuapp.com/booking",
+					"protocol": "https",
+					"host": [
+						"restful-booker",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"booking"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetBooking",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true
+				}
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "\"4a9b3554626f0ca\"",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://restful-booker.herokuapp.com/booking/5259",
+					"protocol": "https",
+					"host": [
+						"restful-booker",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"booking",
+						"5259"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreateBooking",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true
+				}
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "\"4a9b3554626f0ca\"",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"firstname\" : \"Jim\",\r\n    \"lastname\" : \"Brown\",\r\n    \"totalprice\" : 111,\r\n    \"depositpaid\" : true,\r\n    \"bookingdates\" : {\r\n        \"checkin\" : \"2022-01-01\",\r\n        \"checkout\" : \"2044-01-01\"\r\n    },\r\n    \"additionalneeds\" : \"Breakfast\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://restful-booker.herokuapp.com/booking",
+					"protocol": "https",
+					"host": [
+						"restful-booker",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"booking"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdateBooking",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true
+				}
+			},
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Cookie",
+						"value": "token=4a9b3554626f0ca",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Basic YWRtaW46cGFzc3dvcmQxMjM=",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"firstname\" : \"Edinéa\",\r\n    \"lastname\" : \"Conceição\",\r\n    \"totalprice\" : 111,\r\n    \"depositpaid\" : true,\r\n    \"bookingdates\" : {\r\n        \"checkin\" : \"2018-01-01\",\r\n        \"checkout\" : \"2019-01-01\"\r\n    },\r\n    \"additionalneeds\" : \"Breakfast\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://restful-booker.herokuapp.com/booking/60",
+					"protocol": "https",
+					"host": [
+						"restful-booker",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"booking",
+						"60"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeleteBooking",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Cookie",
+						"value": "token=4a9b3554626f0ca",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Basic YWRtaW46cGFzc3dvcmQxMjM=",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://restful-booker.herokuapp.com/booking/60",
+					"protocol": "https",
+					"host": [
+						"restful-booker",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"booking",
+						"60"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
